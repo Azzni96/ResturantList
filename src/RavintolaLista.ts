@@ -22,21 +22,7 @@ let openedRestaurant = {} as Restaurant;
 let map: L.Map;
 let markers: L.Marker[] = [];
 let showWeekly = false; // Toggle to switch between daily and weekly menu
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('./sw.ts')
-      .then((registration) => {
-        console.log(
-          'Service Worker registered with scope:',
-          registration.scope
-        );
-      })
-      .catch((error) => {
-        console.log('Service Worker registration failed:', error);
-      });
-  });
-}
+
 // Initialize map and load restaurants on DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
   document

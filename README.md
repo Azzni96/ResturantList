@@ -1,4 +1,3 @@
-Restaurant List Application - README
 # Restaurant List Application
 This is a Progressive Web Application (PWA) built with Vite and TypeScript that displays a list of
 Finnish student restaurants, allows users to view daily or weekly menus, and provides location

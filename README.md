@@ -23,15 +23,31 @@ localStorage.
 ## Installation
 To run the project locally:
 1. Clone the repository:
- git clone https://github.com/your-repository-url.git
+`` git clone https://github.com/your-repository-url.git``
 2. Navigate to the project directory:
- cd your-project-directory
+ ``cd your-project-directory``
 3. Install dependencies:
- npm install
-4. Run the development server:
- npm run dev
-5. Build the project for production:
- npm run build
+ ``npm install``
+
+4. Install Vite PWA:
+  `` npm install vite-plugin-pwa``
+
+5. Install Leaflet for maps:
+  `` npm install leaflet``
+
+6. Run the development server:
+ ``npm run dev``
+
+7. Build the project for production:
+ ``npm run build``
+
+The production-ready files will be in the dist/ directory.
+PWA Configuration
+This project is a fully functional Progressive Web Application (PWA). It can be installed on devices, and it includes:
+
+Offline support: Uses service workers to cache necessary assets, allowing offline access.
+Auto updates: Automatically updates when new versions are available.
+App manifest: Configures the app name, icons, and theme for installation.
 ## API Endpoints
 - GET /api/v1/restaurants: Fetches the list of restaurants.
 - GET /api/v1/restaurants/daily/{id}/fi: Fetches the daily menu of a restaurant.

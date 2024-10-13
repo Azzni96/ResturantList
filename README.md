@@ -25,32 +25,35 @@ in localStorage.
 ## Installation
 To run the project locally:
 1. Clone the repository:
- git clone https://github.com/Azzni96/ResturantList.git
+ ``git clone https://github.com/Azzni96/ResturantList.git``
 2. Navigate to the project directory:
- cd ResturantList
+ ``cd ResturantList``
 3. Install dependencies:
- npm install
+`` npm install``
 4. Install Vite PWA:
- npm install vite-plugin-pwa
+`` npm install -D vite-plugin-pwa``
 5. Install Leaflet for maps:
- npm install leaflet
+ ``npm install leaflet``
 6. Run the development server:
- npm run dev
+ ``npm run dev``
  The app will be available at http://localhost:3000.
 7. Build the project for production:
- npm run build
+ ``npm run build``
  The production-ready files will be in the dist/ directory.
+
 ## PWA Configuration
 This project is a fully functional Progressive Web Application (PWA). It can be installed on devices,
 and it includes:
 - Offline support: Uses service workers to cache necessary assets, allowing offline access.
 - Auto updates: Automatically updates when new versions are available.
 - App manifest: Configures the app name, icons, and theme for installation.
+
 ## API Endpoints
 The app interacts with the following API endpoints:
 - GET /api/v1/restaurants: Fetches the list of restaurants.
 - GET /api/v1/restaurants/daily/{id}/fi: Fetches the daily menu of a specific restaurant.
 - GET /api/v1/restaurants/weekly/{id}/fi: Fetches the weekly menu of a specific restaurant.
+
 ## Usage
 - Sign Up / Log In: Users can sign up or log in to the application. After logging in, the session is
 stored using JWT tokens.
@@ -59,6 +62,7 @@ stored using JWT tokens.
 toggle buttons to switch to the weekly menu.
 - Theme Switching: Toggle between light and dark themes using the sun/moon icon at the top of the
 page.
+
 ## File Structure
 src/
  components.ts # UI components like restaurant rows and modals
@@ -69,10 +73,13 @@ src/
 public/
  main.css # Styling for the application
 index.html # Main entry point of the application
+
 ## How to Contribute
 Contributions are welcome! If you find a bug or want to suggest improvements, feel free to open an
 issue or submit a pull request.
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
+
 ## Contact
 If you have any questions, feel free to reach out via email or check the project on GitHub.

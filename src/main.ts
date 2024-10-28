@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('signInbtn')?.addEventListener('click', showSignIn);
   document.getElementById('aboutLink')?.addEventListener('click', showAbout);
   checkLoginStatus();
-
-
 });
 
 function showSignUp() {
@@ -118,7 +116,7 @@ function validateEmail(email: string): boolean {
 function checkLoginStatus() {
   const token = localStorage.getItem('token');
   if (token) {
-    fetch(apiURL + '/api/v1/auth/login', {
+    fetch(apiURL + '/api/v1/users/token', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

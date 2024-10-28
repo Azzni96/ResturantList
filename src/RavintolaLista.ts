@@ -9,7 +9,6 @@ const kohde = document.querySelector('tbody') as HTMLTableSectionElement;
 const modaali = document.querySelector('dialog') as HTMLDialogElement;
 const info = document.querySelector('#info') as HTMLElement;
 const closeModal = document.querySelector('#close-modal') as HTMLElement;
-const logoutBTN = document.querySelector('#logout-button') as HTMLElement;
 
 const kutsuRavintolat = async () => {
   const restaurants = await fetchRestaurants();
@@ -30,11 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ?.addEventListener('click', handleSearch);
   initializeMap();
   loadRestaurants();
-
-  logoutBTN.addEventListener('click', () => {
-    localStorage.clear();
-    window.location.href = 'index.html';
-  });
 
   // Event listeners for showing daily or weekly menu
   document.getElementById('show-weekly-menu')?.addEventListener('click', () => {
@@ -65,12 +59,16 @@ async function updateMenuDisplay() {
     dailyMenu?.classList.remove('hidden');
   }
 
-  if (showWeekly) {
-    console.log('Fetching weekly menu for:', openedRestaurant); // Debug message
-    await displayWeeklyMenu(openedRestaurant._id);
+  if (openedRestaurant && openedRestaurant._id) {
+    if (showWeekly) {
+      console.log('Fetching weekly menu for:', openedRestaurant); // Debug message
+      await displayWeeklyMenu(openedRestaurant._id);
+    } else {
+      console.log('Fetching daily menu for:', openedRestaurant); // Debug message
+      await displayDailyMenu(openedRestaurant._id, openedRestaurant);
+    }
   } else {
-    console.log('Fetching daily menu for:', openedRestaurant); // Debug message
-    await displayDailyMenu(openedRestaurant._id, openedRestaurant);
+    console.error('No restaurant selected');
   }
 }
 
@@ -135,11 +133,20 @@ async function fetchRestaurants(): Promise<Restaurant[]> {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data;
+    return removeDuplicates(data);
   } catch (error) {
     console.error('Failed to fetch restaurants:', error);
     return [];
   }
+}
+
+// Function to remove duplicates from the fetched data
+function removeDuplicates(restaurants: Restaurant[]): Restaurant[] {
+  const uniqueRestaurants = new Map();
+  restaurants.forEach((restaurant) => {
+    uniqueRestaurants.set(restaurant._id, restaurant);
+  });
+  return Array.from(uniqueRestaurants.values());
 }
 
 // Load restaurants and add markers to the map
@@ -211,9 +218,12 @@ document.addEventListener('DOMContentLoaded', kutsuRavintolat);
 const teeRavintolaLista = (restaurants: Restaurant[]): void => {
   kohde.innerHTML = '';
 
-  restaurants.sort((a, b) => a.name.localeCompare(b.name));
+  // Remove duplicates before sorting and rendering
+  const uniqueRestaurants = removeDuplicates(restaurants);
 
-  restaurants.forEach((restaurant) => {
+  uniqueRestaurants.sort((a, b) => a.name.localeCompare(b.name));
+
+  uniqueRestaurants.forEach((restaurant) => {
     if (restaurant) {
       const {_id} = restaurant;
       openedRestaurant = restaurant;
@@ -365,6 +375,7 @@ interface Course {
   price: string;
   diets?: string;
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   const currentTheme = localStorage.getItem('theme');
   if (currentTheme === 'dark') {

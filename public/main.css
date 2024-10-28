@@ -11,6 +11,8 @@ body {
   --text-color: black;
   --restaurant-row-bg-light: #f0f0f0;
   --restaurant-row-text-light: #000;
+  --restaurant-row-bg-dark: #333;
+  --restaurant-row-text-dark: #fcf8f8;
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -18,67 +20,44 @@ body {
 .dark-theme {
   --background-color: #121212;
   --text-color: white;
-  --restaurant-row-bg-dark: #333;
-  --restaurant-row-text-dark: #fcf8f8;
 }
 
- table {
-  background-color: var(--restaurant-row-text-dark);
+.dark-theme body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Table Styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  background-color: var(--restaurant-row-bg-light);
   color: var(--restaurant-row-text-light);
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
 }
-.dark-theme table{
-  background-color:  var(--restaurant-row-text-light);
-}
- .dark-theme #info, .dark-theme p, .dark-theme #daily-weekly-menu {
-  background-color:  var(--restaurant-row-text-light);
-  color: var(--restaurant-row-bg-light);
-}
-/* Table Rows */
- tbody tr {
-  background-color: var(--restaurant-row-text-light);
-  color: var(--restaurant-row-text-light);
-}
-.dark-theme  #tablemap {
-  background-color: var(--restaurant-row-text-light);
-  color: var(--restaurant-row-text-dark);
-}
-.dark-theme  tr {
-  background-color: var(--restaurant-row-text-light);
-  color: var(--restaurant-row-text-dark);
-}
-.dark-theme thead {
-  background-color: var(--restaurant-row-text-light);
-  color: var(--restaurant-row-text-dark);
-}
-.dark-theme td {
-  background-color: var(--restaurant-row-text-light);
-  color: var(--restaurant-row-text-dark);
-}
-.dark-theme th{
-  background-color: var(--restaurant-row-text-light);
-  color: var(--restaurant-row-text-dark);
-}
-.dark-theme tbody {
-  background-color: var(--restaurant-row-text-light);
-  color: var(--restaurant-row-text-dark);
-}
-.dark-theme nav{
-  background-color:  var(--restaurant-row-bg-dark);
-}
-.dark-theme footer{
-  background-color:  var(--restaurant-row-bg-dark);
-}
-#search-button {
-  padding: 12px 16px;
-  margin: 8px;
-}
-.dark-theme #search-button, .dark-theme #show-daily-menu, .dark-theme #show-weekly-menu{
+
+.dark-theme th, .dark-theme td {
   background-color: var(--restaurant-row-bg-dark);
-  color: #fff;
+  color: var(--restaurant-row-text-dark);
 }
-.dark-theme #search-input, .dark-theme #weekly-menu,.dark-theme #daily-menu{
-  background-color:  var(--restaurant-row-bg-dark);
-  color: #fff;
+
+tbody tr {
+  background-color: var(--restaurant-row-bg-light);
+  color: var(--restaurant-row-text-light);
+}
+
+.dark-theme tbody tr {
+  background-color: var(--restaurant-row-bg-dark);
+  color: var(--restaurant-row-text-dark);
+}
+
+.highlight {
+  background-color: #fff;
+  font-weight: bold;
 }
 
 /* Navigation Bar */
@@ -105,17 +84,15 @@ nav ul li a {
   padding: 10px 20px;
   color: #fff;
   text-decoration: none;
-  min-width: 44px;
-  min-height: 44px;
+}
+
+nav ul li a:hover {
+  color: #edad0d;
 }
 
 #theme {
   display: flex;
   align-items: center;
-}
-
-nav ul li a:hover {
-  color: #edad0d;
 }
 
 #theme-toggle {
@@ -150,21 +127,24 @@ h2 {
   margin-top: 40px;
 }
 
-.SignBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-  border-radius: 50px;
-  background-color: #0a0602;
+/* Buttons */
+#search-button, #show-daily-menu, #show-weekly-menu, #logout-button {
+  padding: 12px 16px;
+  margin: 8px;
+  background-color: #000;
   color: #fff;
+  border-radius: 10px;
   cursor: pointer;
-  margin: 5px;
 }
 
-#submit {
-  padding: 10px;
-  margin-top: 40px;
+#search-button:hover, #show-daily-menu:hover, #show-weekly-menu:hover, #logout-button:hover {
+  background-color: #edad0d;
+  color: #000;
+}
+
+.dark-theme #search-button, .dark-theme #show-daily-menu, .dark-theme #show-weekly-menu, .dark-theme #logout-button {
+  background-color: var(--restaurant-row-bg-dark);
+  color: #fff;
 }
 
 /* Forms */
@@ -189,7 +169,7 @@ input {
   min-height: 44px;
 }
 
-#signInbtn, #signUpbtn, #button, #logout-button {
+#signInbtn, #signUpbtn, #button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,7 +183,7 @@ input {
   padding: 10px;
 }
 
-#signInbtn:hover, #signUpbtn:hover, #logout-button:hover, #button:hover {
+#signInbtn:hover, #signUpbtn:hover, #button:hover {
   background-color: #edad0d;
   color: #000;
 }
@@ -259,28 +239,6 @@ input {
   color: #f4b413;
 }
 
-/* Tables */
-table {
-  border-collapse: collapse;
-}
-
-th {
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
-}
-
-td {
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
-}
-
-.highlight {
-  background-color: #fff;
-  font-weight: bold;
-}
-
 /* Dialogs */
 dialog > div:first-child {
   position: absolute;
@@ -329,23 +287,9 @@ div ul li {
   justify-content: center;
 }
 
-tbody {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-table {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
 #map {
   width: 50%;
-  height: 50%;
+  height: 400px;
 }
 
 #name {
@@ -413,6 +357,7 @@ footer h3 {
   font-size: 10px;
 }
 
+/* Responsive Styles */
 @media (max-width: 700px) {
   nav ul {
     flex-direction: column;
